@@ -1,0 +1,25 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /neptune-his #访问路径前缀
+spring:
+  application:
+    name: neptune-his-service #服务发现名称
+  datasource:
+    url: jdbc:mysql://localhost:3306/his?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# mybatis-plus相关配置
+mybatis-plus:
+#  mapper-locations: classpath:mapper/*.xml #xml扫描，多个目录用逗号或者分号分隔（声明Mapper所对应的XML文件位置）
+  #以下配置均有默认值，可以不设置
+  global-config:
+    db-config:
+      id-type: UUID #主键类型 AUTO："数据库ID自增"、INPUT："用户输入ID"、ID_WORKER："全局唯一ID(数字类型唯一ID)"、UUID："全局唯一ID UUID"
+      field-strategy: NOT_EMPTY #字段策略 IGNORED："忽略判断"、NOT_NULL："非NULL判断"、NOT_EMPTY："非空判断"
+      db-type: MYSQL #数据库类型
+  configuration:
+    map-underscore-to-camel-case: true #是否开启驼峰命名
+    call-setters-on-nulls: true #如果查询结果包含空值的列，则Mybatis在映射时，不会映射这个字段
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #此配置将会打印执行时的sql，在开发或测试时可以用
